@@ -17,6 +17,8 @@ background_picture = pygame.image.load('image/background.jpg').convert()
 array = [[0 for i in range(size)] for i in range(size)]
 # 16个方块的Surface对象
 block = [pygame.Surface((cell_size, cell_size)) for i in range(15)]
+# 字体设置
+game_font = 'font/msmono.ttf'
 # RGB颜色待选数组
 color = [
     (192, 192, 192),

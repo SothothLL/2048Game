@@ -40,8 +40,8 @@ def game_start():
 def game_over():
     # 游戏结束页面
     # 设置字体以及显示字体
-    game_font = pygame.font.Font('font/msmono.ttf', 50)
-    game_surf = game_font.render('Game Over', True, (255, 0, 0))
+    game_over_font = pygame.font.Font(game_font, 50)
+    game_surf = game_over_font.render('Game Over', True, (255, 0, 0))
     # 获取当前字体所在矩形的长宽
     game_rect = game_surf.get_rect()
     # 设置矩形中心
@@ -49,8 +49,8 @@ def game_over():
 
     margin = pygame.Surface((screen_width, cell_size))
     margin.fill((255, 255, 255))
-    game_over_font = pygame.font.Font('font/msmono.TTF', 35)
-    press_key_surf = game_over_font.render('press R to restart', True, (0, 0, 0))
+    game_restart_font = pygame.font.Font(game_font, 35)
+    press_key_surf = game_restart_font.render('press R to restart', True, (0, 0, 0))
     press_key_rect = press_key_surf.get_rect()
     press_key_rect.center = (screen_width / 2, screen_height - 60)
 
@@ -171,7 +171,6 @@ def move_key(event):
                     mark = True
                     change_x(x, y, dispose)
     if mark:
-        # 创造新数字方块
         create()
     if score >= history:
         history = score
@@ -240,7 +239,7 @@ def show_panel():
                     t /= 2
                 # 绘制方块颜色
                 pygame.draw.rect(screen, color[num % 14], inner_rect)
-                rect_font = pygame.font.Font('font/msmono.ttf', 30)
+                rect_font = pygame.font.Font(game_font, 30)
                 map_text = rect_font.render(str(array[i][j]), True, (0, 0, 0))
                 text_rect = map_text.get_rect()
                 text_rect.center = (cell_size * i + cell_size / 2, cell_size * j + cell_size / 2+100)
@@ -255,13 +254,13 @@ def show_panel():
 
 def score_board(map_text):
     # 绘制分数
-    score_font = pygame.font.Font('font/msmono.ttf', 30)
+    score_font = pygame.font.Font(game_font, 30)
     score_text = score_font.render("Score:%s" % str(score), True, (255, 255, 0))
     text_rect = map_text.get_rect()
     text_rect.center = (50, 35)
     screen.blit(score_text, text_rect)
 
-    history_font = pygame.font.Font('font/msmono.ttf', 30)
+    history_font = pygame.font.Font(game_font, 30)
     score_text = history_font.render("History:%s" % str(history), True, (255, 255, 0))
     text_rect = map_text.get_rect()
     text_rect.center = (screen_width/2+50, 35)
